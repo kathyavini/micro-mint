@@ -8,7 +8,7 @@ import { mint, mintDark, sage, sageDark } from '@radix-ui/colors';
 
 const root = createGlobalTheme(':root', {
   fonts: {
-    // heading: 'Karla, sans-serif',
+    // heading: 'Raleway, sans-serif',
     body: '"Open Sans", sans-serif',
     heading: 'Cabin, sans-serif',
   },

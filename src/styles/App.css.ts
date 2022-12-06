@@ -1,65 +1,28 @@
 import { style, globalStyle, keyframes } from '@vanilla-extract/css';
-import { vars } from '../styles/theme.css';
+import { vars, breakpoints } from '../styles/theme.css';
 import { stack, row } from '../styles/recipes.css';
 
-globalStyle('h1', {
-  fontSize: vars.vw.vw1,
+globalStyle('#app', {
+  width: '100vw',
+  display: 'flex',
+  flexFlow: 'column nowrap',
+  alignItems: 'center',
+  position: 'relative',
+  overflowX: 'hidden',
 });
 
-globalStyle('h2', {
-  fontSize: vars.vw.vw2,
-});
-
-globalStyle('h3', {
-  fontSize: vars.vw.vw3,
-});
-
-globalStyle('p, li, a', {
-  fontSize: vars.vw.vw6,
-});
-
-export const appContainer = style([
-  {
-    width: '100vw',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    alignItems: 'center',
-    position: 'relative',
-    overflowX: 'hidden',
-  },
-]);
-
-export const page = style([
+export const container = style([
   stack({ gap: 'xs' }),
   {
     width: '90vw',
     marginBlock: '5vh',
+    '@media': {
+      [`screen and (max-width: ${breakpoints.md})`]: {
+        gap: '0',
+      },
+    },
   },
 ]);
-
-export const infoText = style({
-  marginTop: '-0.7rem',
-});
-
-export const corner = style({
-  alignSelf: 'flex-end',
-  marginTop: '2vh',
-});
-
-export const headingRow = style({
-  width: '100%',
-  display: 'flex',
-  flexFlow: 'row-reverse wrap',
-  justifyContent: 'space-between',
-});
-
-globalStyle(`${headingRow} button`, {
-  alignSelf: 'flex-start',
-});
-
-globalStyle(`${headingRow} h1`, {
-  width: '100%',
-});
 
 export const pageTitle = style({
   color: vars.colors.accentText,
@@ -71,6 +34,12 @@ export const sectionTitle = style({
   color: vars.colors.accentText,
   fontSize: vars.vw.vw4,
   fontWeight: 700,
+
+  '@media': {
+    [`screen and (max-width: ${breakpoints.md})`]: {
+      fontSize: vars.vw.vw5,
+    },
+  },
 });
 
 export const mainText = style({
@@ -97,6 +66,12 @@ export const boldMuted = style({
   fontFamily: vars.fonts.heading,
   fontWeight: 400,
   color: vars.colors.textMuted,
+
+  '@media': {
+    [`screen and (max-width: ${breakpoints.md})`]: {
+      fontSize: vars.vw.vw5,
+    },
+  },
 });
 
 export const boldMutedColor = style({
@@ -121,28 +96,81 @@ export const italicMutedSmall = style({
   fontStyle: 'italic',
 });
 
-globalStyle('ul', {
-  paddingLeft: vars.vw.vw6,
-});
-
-globalStyle('li', {
-  // listStyleType: 'circle',
-});
-
-globalStyle('li::marker', {
-  color: vars.colors.accentTextMuted,
-});
-
 export const results = style([
+  row({ gap: 'md', justify: 'between' }),
+  {
+    maxWidth: '100%',
+    '@media': {
+      [`screen and (max-width: ${breakpoints.md})`]: {
+        padding: '0',
+        gap: '0',
+      },
+    },
+  },
+]);
+
+globalStyle(`${results} p`, {
+  color: vars.colors.text,
+  '@media': {
+    [`screen and (max-width: ${breakpoints.md})`]: {
+      padding: '0rem',
+    },
+  },
+});
+
+export const filteredResults = style([
   row({ gap: 'md', justify: 'between' }),
   {
     backgroundColor: vars.colors.accentBackground,
     padding: '1rem',
     maxWidth: '100%',
+    '@media': {
+      [`screen and (max-width: ${breakpoints.md})`]: {
+        padding: '0',
+        gap: '0',
+      },
+    },
   },
 ]);
 
-globalStyle(`${results} p`, {
+globalStyle(`${filteredResults} p`, {
   color: vars.colors.accentTextMuted,
-  wordBreak: 'break-all',
+  '@media': {
+    [`screen and (max-width: ${breakpoints.md})`]: {
+      padding: '0rem',
+    },
+  },
+});
+
+export const total = style([
+  row({ justify: 'end', gap: 'sm' }),
+  {
+    '@media': {
+      [`screen and (max-width: ${breakpoints.md})`]: {
+        fontSize: vars.vw.vw4,
+      },
+    },
+  },
+]);
+
+export const collapseToggle = style({
+  padding: '.5em .5em',
+  border: 'none',
+  background: 'transparent',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: vars.colors.textMuted,
+  fontSize: '2rem',
+
+  /* This transition is same as https://www.radix-ui.com/docs/primitives/components/navigation-menu */
+  transition: 'transform 250ms ease',
+  ':active': {
+    filter: 'brightness(1.1)',
+  },
+  selectors: {
+    '&[data-state="open"]': {
+      transform: 'rotate(-180deg)',
+    },
+  },
 });

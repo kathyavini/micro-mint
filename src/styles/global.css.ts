@@ -1,5 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css';
-import { vars } from './theme.css';
+import { vars, breakpoints } from './theme.css';
 
 // Josh Comeau's CSS Reset
 globalStyle('*', {
@@ -73,4 +73,32 @@ globalStyle('a:hover', {
 
 globalStyle('a:visited', {
   // color: vars.colors.accentTextMuted,
+});
+
+globalStyle('h1', {
+  fontSize: vars.vw.vw1,
+});
+
+globalStyle('h2', {
+  fontSize: vars.vw.vw2,
+});
+
+globalStyle('h3', {
+  fontSize: vars.vw.vw3,
+});
+
+globalStyle('p, li, a', {
+  fontSize: vars.vw.vw6,
+});
+
+globalStyle('ul', {
+  paddingLeft: vars.vw.vw6,
+});
+
+globalStyle('li', {
+  // listStyleType: 'circle',
+});
+
+globalStyle('li::marker', {
+  color: vars.colors.accentTextMuted,
 });

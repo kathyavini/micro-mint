@@ -1,46 +1,32 @@
 import './styles/global.css';
 import { lightTheme, darkTheme } from './styles/theme.css';
+import { container, pageTitle } from './styles/App.css';
+import { stack, row } from './styles/recipes.css';
 import { themeToggle } from './styles/style.css';
-import {
-  appContainer,
-  page,
-  corner,
-  pageTitle,
-  sectionTitle,
-  mainText,
-  boldMuted,
-  boldMutedColor,
-  italicMutedColor,
-  infoText,
-} from './styles/App.css';
-import { row } from './styles/recipes.css';
 
 import { useDarkMode } from './hooks/useDarkMode';
-import { FileUpload } from './components/FileUpload';
+import { CsvUpload } from './components/CsvUpload';
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = useDarkMode();
 
   return (
-    <div
-      id="app"
-      className={[appContainer, isDarkTheme ? darkTheme : lightTheme].join(
-        ' '
-      )}>
-      <main className={page}>
-        <div className={row({ justify: 'between' })}>
+    <div id="app" className={isDarkTheme ? darkTheme : lightTheme}>
+      <div className={container}>
+        <header className={row({ justify: 'between' })}>
           <h1 className={pageTitle}>Micro Mint for Laddi</h1>
           <button
-            className={[themeToggle].join(' ')}
+            className={themeToggle}
             onClick={() => setIsDarkTheme((prev) => !prev)}>
             <span className="material-icons">
               {isDarkTheme ? 'dark_mode' : 'light_mode'}
             </span>
           </button>
-        </div>
-
-        <FileUpload />
-      </main>
+        </header>
+        <main>
+          <CsvUpload />
+        </main>
+      </div>
     </div>
   );
 }

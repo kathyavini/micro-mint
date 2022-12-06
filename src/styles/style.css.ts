@@ -1,5 +1,5 @@
 import { style, styleVariants, globalStyle } from '@vanilla-extract/css';
-import { vars } from './theme.css';
+import { vars, breakpoints } from './theme.css';
 
 export const buttonBase = style({
   padding: '0.7rem 2rem',
@@ -13,6 +13,12 @@ export const buttonBase = style({
 
   ':active': {
     filter: 'brightness(1.1)',
+  },
+
+  '@media': {
+    [`screen and (max-width: ${breakpoints.md})`]: {
+      padding: '0.5rem 0.5rem',
+    },
   },
 });
 
@@ -95,9 +101,11 @@ globalStyle(`${themeToggle} span`, {
 
 export const themeFocus = style({
   ':focus': {
-    outline: `3px solid ${vars.colors.accentTextMuted}`,
+    outline: `2px solid ${vars.colors.accentSolidHover}`,
+    outlineOffset: '1px',
   },
   ':focus-visible': {
-    outline: `3px solid ${vars.colors.accentTextMuted}`,
+    outline: `2px solid ${vars.colors.accentSolidHover}`,
+    outlineOffset: '1px',
   },
 });
