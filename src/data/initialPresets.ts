@@ -4,19 +4,11 @@ export interface Preset {
 }
 
 export const initialPresets = [
-  { name: 'Groceries', searchString: 'Superstore, T&T, Fruiticana' },
+  { name: 'Cafes', searchString: 'Blenz, Tim Hortons, Breka' },
+
   { name: 'Delivery', searchString: 'Skip, Uber, Dash' },
   {
-    name: 'Downtown',
-    searchString:
-      'Tim Hortons, Blenz, Papparoti, Whole Foods, Al-Hadbah, Subway, Breka, Vietsub, Chipotle, Silver Spoon, Garden, Holy Guacamole',
-  },
-  {
-    name: 'Sunset',
-    searchString: 'Best Quality, Himalaya',
-  },
-  {
-    name: 'Skincare',
-    searchString: 'Shoppers, Sephora',
+    name: 'Groceries',
+    searchString: 'Superstore, T&T, Fruiticana, Whole Foods',
   },
 ];
